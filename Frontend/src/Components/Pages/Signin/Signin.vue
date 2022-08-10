@@ -1,3 +1,16 @@
+<script>
+    import Signup from "../Signup/Signup.vue";
+    export default {
+        name: "Signin",
+        data(){
+            return{
+            }
+        },
+        methods:{
+        }
+    } 
+</script>
+
 <template>
     <form justify-content-center>
         <div class="mb-3">
@@ -19,22 +32,8 @@
         </div>   
         <div class="mb-3">
             <label class="text-light">You don't have an account? </label>
+            <router-link to="/Signup" class="text-primary">Sign up </router-link>
             <a href="signup.html" class="text-primary"> Sign Up</a>
         </div>
     </form>
 </template>
-
-<script>
-    export default {
-        name: "Signin",
-        data(){
-            return{
-            }
-        },
-        methods:{
-            gotoSignup(){
-                this.$emit(this.flagSignUp)
-            }
-        }
-    } 
-</script>
