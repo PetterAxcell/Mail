@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import Vuerouter from "./router.js";
+import Vuelidate from '@vuelidate/core'
 import 'bootstrap/dist/css/bootstrap.css';
-import router from "./router.js";
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(Vuerouter).use(Vuelidate).mount('#app')

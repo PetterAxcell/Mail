@@ -1,23 +1,23 @@
 <template>
-    <form justify-content-center>
+    <form justify-content-center  v-on:submit.prevent="sendSignUpDates()">
         <div class="mb-3">
             <label for="signupName" class="form-label text-light">First name</label>
-            <input class="form-control" id="signupName" type="text" placeholder="First name">
+            <input  v-model="user.name" class="form-control" id="signupName" type="text" placeholder="First name">
         </div>
         <div class="mb-3">
             <label for="signupSurname" class="form-label text-light">Last name</label>
-            <input class="form-control" id="signupSurname" type="text" placeholder="Last name">
+            <input v-model="user.surname" class="form-control" id="signupSurname" type="text" placeholder="Last name">
         </div>
         <div class="mb-3">
             <label for="signupMail" class="form-label text-light">Email address</label>
-            <input class="form-control" id="signupMail" type="mail" placeholder="Email">
+            <input v-model="user.mail" class="form-control" id="signupMail" type="mail" placeholder="Email">
         </div>
         <div class="mb-3">
             <label class="text-light form-label" for="signupPassword">Password</label>
-            <input class="form-control" id="signupPassword" type="password" placeholder="Password">
+            <input v-model="user.pass" class="form-control" id="signupPassword" type="password" placeholder="Password">
         </div>
         <div class="mb-1"> 
-            <button class="btn btn-primary">Submit</button>
+            <button type="submit" value="Submit" v-on:click="sendSignUpDates()" class="btn btn-primary">Submit</button>
         </div>   
         <div class="mb-3">
             <label class="text-light">You have an account </label>
@@ -27,16 +27,30 @@
 </template>
 
 <script>
+    import { required, minLength } from '@vuelidate/validators'
     export default {
         name: "Signup",
         data(){
             return{
+                user:{
+                    name:'',
+                    surname:'',
+                    email:'',
+                    pass:''
+                }
             }
         },
-        emit:['flagSignUp'],
         methods:{
-            gotoSignup(){
-                this.$emit(this.flagSignUp)
+            sendSignUpDates(){
+                alert(user.name)
+            }
+        },
+        validations:{
+            user:{
+                name:{
+                    required,
+                    minLength: minLength(2)
+                }
             }
         }
     } 
