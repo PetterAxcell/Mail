@@ -17,7 +17,7 @@
             <input v-model="user.pass" class="form-control" id="signupPassword" type="password" placeholder="Password">
         </div>
         <div class="mb-1"> 
-            <button type="submit" value="Submit" v-on:click="sendSignUpDates()" class="btn btn-primary">Submit</button>
+            <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
         </div>   
         <div class="mb-3">
             <label class="text-light">You have an account </label>
@@ -27,8 +27,13 @@
 </template>
 
 <script>
+    import useVuelidate from '@vuelidate/core'
     import { required, minLength } from '@vuelidate/validators'
     export default {
+
+    setup () {
+        return { v$: useVuelidate() }
+      },
         name: "Signup",
         data(){
             return{
@@ -42,7 +47,11 @@
         },
         methods:{
             sendSignUpDates(){
-                alert(user.name)
+                this.v$.$validate()
+                if(this.v$.$error)
+                {
+                    alert("Complete the name")
+                }
             }
         },
         validations:{
