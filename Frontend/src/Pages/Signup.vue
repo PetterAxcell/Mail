@@ -29,6 +29,7 @@
 <script>
     import useVuelidate from '@vuelidate/core'
     import { required, minLength } from '@vuelidate/validators'
+    import axios from "axios"
     export default {
 
     setup () {
@@ -41,16 +42,36 @@
                     name:'',
                     surname:'',
                     email:'',
-                    pass:''
-                }
+                    pass:'',
+                },
+                configu:{
+                    headers:{
+                        "Content-Type" : "application/json"
+                    }
+                },
+                url: '/signup'
             }
         },
         methods:{
             sendSignUpDates(){
                 this.v$.$validate()
+                console.log("Here2")
                 if(this.v$.$error)
                 {
                     alert("Complete the name")
+                }
+                else{
+                    console.log("Here")
+                    axios
+                    .post("http://localhost:3000/signup", JSON.stringify(this.user), this.configu)
+                    .then((response)=>{
+                        if(response.status==200){
+                            console.log(response)
+                        }
+                    })
+                    .catch((e)=>{
+                        console.log(e)
+                    }); 
                 }
             }
         },
