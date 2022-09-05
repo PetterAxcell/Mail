@@ -14,17 +14,17 @@ const pool = createConnection({
     connectionlimit:10
 })
 
-var sql = "INSERT INTO users (Name, LastName, Mail, Password) VALUES (?)";
 var values = ['aitor','tilla', 'example1@gmial.com', '4312']
 
-pool.query(sql, [values], (err, res)=>{
-if(err){return console.log(err);}})
+
 
 pool.query('select * from users', (err, res, fields)=>{
     if(err){
 
         return console.log(err);
     }})
+
+
 app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -41,8 +41,11 @@ app.get( '/', (req, response)=>{
 })
 
 app.post('/signup', (req, res)=>{
-    console.log(req.body)
-    res.send("r")
+    values = [req.body.name, req.body.surname, req.body.mail, req.body.pass]
+    console.log(values)
+    var sql = "INSERT INTO users (Name, LastName, Mail, Password) VALUES (?)";
+    pool.query(sql, [values], (err, res)=>{
+        if(err){return console.log(err);}})
 })
 
 const PORT = process.env.PORT || 3000;
