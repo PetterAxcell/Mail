@@ -1,9 +1,30 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path');
-
+const { createConnection } = require('mysql');
 const app = express()
 
+
+//--------- Database -------
+const pool = createConnection({
+    host:'localhost',
+    user:'root',
+    password:'Ariannaj15',
+    database:'mail',
+    connectionlimit:10
+})
+
+var sql = "INSERT INTO users (Name, LastName, Mail, Password) VALUES (?)";
+var values = ['aitor','tilla', 'example1@gmial.com', '4312']
+
+pool.query(sql, [values], (err, res)=>{
+if(err){return console.log(err);}})
+
+pool.query('select * from users', (err, res, fields)=>{
+    if(err){
+
+        return console.log(err);
+    }})
 app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -23,6 +44,8 @@ app.post('/signup', (req, res)=>{
     console.log(req.body)
     res.send("r")
 })
-console.log("Im hearing...")
 
-app.listen(3000)
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
+});

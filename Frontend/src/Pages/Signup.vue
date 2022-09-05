@@ -41,7 +41,7 @@
                 user:{
                     name:'',
                     surname:'',
-                    email:'',
+                    mail:'',
                     pass:'',
                 },
                 configu:{
@@ -55,18 +55,16 @@
         methods:{
             sendSignUpDates(){
                 this.v$.$validate()
-                console.log("Here2")
                 if(this.v$.$error)
                 {
                     alert("Complete the name")
                 }
                 else{
-                    console.log("Here")
                     axios
                     .post("http://localhost:3000/signup", JSON.stringify(this.user), this.configu)
                     .then((response)=>{
                         if(response.status==200){
-                            console.log(response)
+                            console.log("ok")
                         }
                     })
                     .catch((e)=>{
