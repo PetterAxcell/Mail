@@ -21,7 +21,7 @@
         </div>   
         <div class="mb-3">
             <label class="text-light">You have an account </label>
-            <router-link to="/" class="text-primary">Sign In</router-link>
+            <router-link to="/signin" class="text-primary">Sign In</router-link>
         </div>
     </form>
 </template>
@@ -30,8 +30,9 @@
     import useVuelidate from '@vuelidate/core'
     import { required, minLength } from '@vuelidate/validators'
     import axios from "axios"
-    export default {
+    import router from '../router'
 
+    export default {
     setup () {
         return { v$: useVuelidate() }
       },
@@ -49,7 +50,7 @@
                         "Content-Type" : "application/json"
                     }
                 },
-                url: '/signup'
+                url: "http://localhost:3001/api/v1/signup"
             }
         },
         methods:{
@@ -61,11 +62,12 @@
                 }
                 else{
                     axios
-                    .post("http://localhost:3000/signup", JSON.stringify(this.user), this.configu)
+                    .post(this.url, JSON.stringify(this.user), this.configu)
                     .then((response)=>{
                         if(response.status==200){
                             console.log("ok")
                         }
+                        router.push({path:"/signin"})
                     })
                     .catch((e)=>{
                         console.log(e)

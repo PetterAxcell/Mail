@@ -5,6 +5,8 @@ const userController = require("../../controllers/userController");
 
 router
     .get("/",  userController.pruebaController)
-    .post("/signup", userController.addUserController);
+    .post("/signup", userController.addUserController)
+    .post("/signin", userController.validateUser)
+    .get("/main/:id", userController.searchMailsController);
 
 module.exports = router;
