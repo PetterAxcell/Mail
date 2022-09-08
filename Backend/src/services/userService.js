@@ -29,7 +29,7 @@ async function searchMailsService  (body) {
             return a[0];
         }
         else{
-            return a[0];
+            return a;
         }
     }
     catch (err) {

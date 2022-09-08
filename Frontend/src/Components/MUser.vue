@@ -1,7 +1,11 @@
 <template>
     <div>
         <h1 class="text-light">Mail</h1>
-        <ul> <a class="text-light">Subject: {{this.list_mails.Subject}} </a></ul>
+        <ul> 
+            <li class="text-light" v-for="i in this.list_mails" :key="i.ID_user">
+                {{i.Subject}}
+            </li>
+        </ul>
     </div>
 </template>
 <script>
