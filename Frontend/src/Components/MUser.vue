@@ -3,11 +3,17 @@
         <div class="p-3">
             <h1 class="text-light">Mail</h1>
             <hr  class="text-light" />
-        </div> <ul class = "list-unstyled p-3"> 
+            
+            <div>
+                <router-view to="/main/navegador"></router-view>
+            </div>
+
+        </div> 
+        <ul class = "list-unstyled p-3"> 
             <li class="m-3 bg-light d-inline-block" v-for="i in this.list_mails" :key="i.ID_user">
                 <div class="d-inline-block">
                     <img src="../../public/favicon.ico" alt="">
-                    <router-link to="/signup" class="p-3 d-inline-block "> {{i.From_user}} {{i.Subject}} </router-link>
+                    <router-link to="/" class="p-3 d-inline-block text-dark "> {{i.From_user}} {{i.Subject}} </router-link>
                 </div>
             </li>
         </ul>
@@ -15,7 +21,7 @@
 </template>
 <script>
     import axios from "axios"
-
+    import router from '../router'
     export default {
         name: 'MUser',
         data(){
