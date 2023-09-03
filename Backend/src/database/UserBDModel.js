@@ -9,11 +9,9 @@ const pool = createConnection({
     connectionlimit:10
 })
 
-console.log('minimail')
 
 const addUserModel = (body) => {
     values = [body.name, body.surname, body.mail, body.pass]
-    console.log(values)
     var sql = "INSERT INTO users (Name, Lastname, Mail, Password) VALUES (?)";
     pool.query(sql, [values], (err, res)=>{
         if(err){return console.log(err);}})
