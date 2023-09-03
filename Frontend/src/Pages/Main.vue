@@ -1,13 +1,18 @@
 <template>
-    <MUser/>
+    <Navegador/>
+    <div class=" w-70">    
+        <MUser/>
+    </div>
 </template>
 
 <script>
+    import Navegador from "../Components/Navegador.vue"
     import MUser  from "../Components/MUser.vue"
     export default {
         name: "Main",
         components: {
-            MUser
+            MUser,
+            Navegador
         },
         data(){
             return{
