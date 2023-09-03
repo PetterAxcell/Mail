@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  db:
+    container_name: mysql-minimail
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+    ports:
+      - "3342:3306"
+    restart: unless-stopped
+    

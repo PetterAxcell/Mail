@@ -1,15 +1,19 @@
-const { createConnection } = require('mysql');
+const { createConnection } = require('mysql2');
 
 const pool = createConnection({
     host:'localhost',
     user:'root',
-    password:'Ariannaj15',
+    password:'root',
     database:'minimail',
+    port: 3342,
     connectionlimit:10
 })
 
+console.log('minimail')
+
 const addUserModel = (body) => {
     values = [body.name, body.surname, body.mail, body.pass]
+    console.log(values)
     var sql = "INSERT INTO users (Name, Lastname, Mail, Password) VALUES (?)";
     pool.query(sql, [values], (err, res)=>{
         if(err){return console.log(err);}})
