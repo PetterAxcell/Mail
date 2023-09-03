@@ -1,7 +1,7 @@
 <template>
     <div class ="table-responsive">        
         <table class="table table-dark table-bordered table-striped ">
-            <thead class="bg-info">
+            <thead class="bg-primary">
                 <th>From</th>
                 <th>Subject</th>
             </thead>

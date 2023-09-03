@@ -1,19 +1,19 @@
 <template>
     <nav class = "navbar navbar-light navbar-expand-md bg-light">
-        <Tittle></Tittle>
+        <Title></Title>
         <div class="navbar-collapse col-2 d-flex justify-content-around" id="navbarNavAltMarkup">
-            <a class="nav-item nav-link active">Write a new Email</a>
-            <a class="nav-item nav-link">Delete an email</a>
+            <router-link to="/main/writemail" class="nav-item nav-link active">Write a new Email</router-link>
+            <router-link to="/main/delete-email" class="nav-item nav-link active">Delete an email</router-link>
         </div>
     </nav>
 </template>
 
 <script>
- import Tittle from "../Components/Tittle.vue"
+ import Title from "../Components/Title.vue"
     export default {
         name: 'Navegador',
         components:{
-            Tittle
+            Title
         }
     }
 </script>
