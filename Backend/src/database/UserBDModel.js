@@ -9,6 +9,13 @@ const pool = createConnection({
     connectionlimit:10
 })
 
+const addEmail = (body)=>{
+    values = [body.subject, body.from, body.to, body.message, body.to_id]
+    var sql = "INSERT INTO emails (Subject, From_user, To_user, Message, ID_User) VALUES (?)";
+    pool.query(sql, [values], (err, res)=>{
+        if(err){return console.log(err);}})
+    return true;
+}
 
 const addUserModel = (body) => {
     values = [body.name, body.surname, body.mail, body.pass]
@@ -30,11 +37,35 @@ const getUserModel = (body) => {
     return p;
 }
 
-const searchMailsModel = (body) => {
+const getUserByEmail = (mail) => {
+    let p = new Promise((resolve, reject) => { 
+        var sql = "SELECT * FROM users WHERE Mail = ?";
+        let ret = pool.query(sql, 
+            [mail], (err, res)=>{
+            if(err){return console.log(err);}
+            resolve(res);
+        })
+    })
+    return p;
+}
+
+const getUserById = (id) => {
+    let p = new Promise((resolve, reject) => { 
+        var sql = "SELECT * FROM users WHERE Id = ?";
+        let ret = pool.query(sql, 
+            [id], (err, res)=>{
+            if(err){return console.log(err);}
+            resolve(res);
+        })
+    })
+    return p;
+}
+
+const searchMailsModel = (id) => {
     let p = new Promise((resolve, reject) => { 
         var sql = "SELECT * FROM emails Where ID_User = ?";
         let ret = pool.query(sql, 
-            [body], (err, res)=>{
+            [id], (err, res)=>{
             resolve(res);
         })
     })
@@ -46,5 +77,8 @@ const searchMailsModel = (body) => {
 module.exports = {
     addUserModel,
     getUserModel,
-    searchMailsModel
+    searchMailsModel, 
+    addEmail,
+    getUserById,
+    getUserByEmail
 }

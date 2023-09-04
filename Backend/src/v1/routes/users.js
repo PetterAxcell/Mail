@@ -7,6 +7,7 @@ router
     .get("/",  userController.pruebaController)
     .post("/signup", userController.addUserController)
     .post("/signin", userController.validateUser)
-    .get("/main/:id", userController.searchMailsController);
+    .get("/main/:id", userController.searchMailsController)
+    .post("/send-email", userController.sendEmail);
 
 module.exports = router;
