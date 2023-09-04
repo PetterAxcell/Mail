@@ -73,6 +73,16 @@ const searchMailsModel = (id) => {
 
 }
 
+const deleteEmailById = (id) =>{
+    let p = new Promise((resolve, reject)=>{
+        let sql = "DELETE FROM emails WHERE ID_Mail = ? ";
+        let ret = pool.query(sql, 
+            [id], (err, res)=>{
+            resolve(res);
+        })
+
+    })
+}
 
 module.exports = {
     addUserModel,
@@ -80,5 +90,6 @@ module.exports = {
     searchMailsModel, 
     addEmail,
     getUserById,
-    getUserByEmail
+    getUserByEmail,
+    deleteEmailById
 }

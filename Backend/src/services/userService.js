@@ -31,6 +31,12 @@ async function getUserById (body){
         console.log(err);
     }
 }
+async function deleteEmail(body){
+    body.id_emails.map(function(el){
+        UserBD.deleteEmailById(el);
+    })
+    return true
+}
 
 const addUser = (body)=>{
     const allUsersBD = UserBD.addUserModel(body);
@@ -69,5 +75,6 @@ module.exports = {
     searchMailsService,
     addEmail,
     getUserById,
-    getUserByEmail
+    getUserByEmail,
+    deleteEmail
 };

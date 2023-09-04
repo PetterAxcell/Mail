@@ -17,7 +17,6 @@ async function validateUser(req, res){
 
 async function sendEmail(req, res){
     const {body} = req;
-    console.log(body)
     if (await userService.getUserById(body)!== undefined &&
         await userService.getUserByEmail(body.to) !== undefined) 
     {
@@ -25,10 +24,15 @@ async function sendEmail(req, res){
         const {ID} = await userService.getUserByEmail(body.to)
         body['from'] = Mail;
         body['to_id'] = parseInt(ID);
-        console.log(body)
         await userService.addEmail(body);
         res.status(201).send(body);
     }
+}
+
+async function deleteEmail(req, res){
+    const{body} = req;
+    await userService.deleteEmail(body)
+    res.status(200).send(body);
 }
 
 async function searchMailsController(req, res){
@@ -43,5 +47,6 @@ module.exports = {
     addUserController,
     validateUser,
     searchMailsController,
-    sendEmail
+    sendEmail,
+    deleteEmail
 }

@@ -1,5 +1,5 @@
 <template>
-    <Navegador/>
+    <Navegador :createFlag="false"/>
     <div class="w-50 position-absolute top-50 start-50 translate-middle">
        <form justify-content-center v-on:submit.prevent="sendEmail()">
            <div class="mb-3">

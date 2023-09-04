@@ -1,12 +1,15 @@
 <template>
+    <Navegador/>
     <div class ="table-responsive">        
         <table class="table table-dark table-bordered table-striped ">
             <thead class="bg-primary">
-                <th>From</th>
-                <th>Subject</th>
+                <th :hidden="!flagDeleteCookie">Checkbok</th>
+                <th>From    </th>
+                <th>Subject </th>
             </thead>
             <tbody>
                 <tr v-for="i in this.list_mails" :key="i.ID_user">
+                    <td :hidden="!flagDeleteCookie" >  <input  type="checkbox" class="form-check-input" id="Check1"> </td>
                     <td>{{ i.From_user }}</td>
                     <td>{{ i.Subject }}</td>
                 </tr>
@@ -28,6 +31,7 @@
                 url: "http://localhost:3001/api/v1/main/",
                 ID_user:'',
                 list_mails : [],
+                flagDeleteCookie : false
             }
         },
         created: function(){
@@ -40,6 +44,6 @@
                     .catch((error)=>{
                         console.log(error)
                     })
-        }
+        },
     }
 </script>
