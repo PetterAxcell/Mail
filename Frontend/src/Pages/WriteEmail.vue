@@ -40,13 +40,15 @@
                     subject:'',
                     to:'',
                     message:'',
-                    from:''
-                }
+                    id:''
+                },
             }
         },
         methods: {
             sendEmail(){
-                axios.post(this.url, JSON.stringify(this.user), this.configu)
+                this.email.id= sessionStorage.getItem('id')
+                console.log(this.email)
+                axios.post(this.url, JSON.stringify(this.email), this.configu)
                 .then((response)=>{
                         console.log("alright")
                     })
@@ -54,6 +56,6 @@
                         console.log(error)
                     })
             }
-        }
+        },
     }
 </script>

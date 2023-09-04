@@ -10,7 +10,7 @@ const routes = [
     { path: "/signin", component: Signin },
     { path: "/signup", component: Signup },
     { path: "/main/:id", component: Main },
-    { path: "/main/writemail", component: WriteEmail}
+    { path: "/main/write-mail", component: WriteEmail}
   ];
 
 const history = createWebHistory();

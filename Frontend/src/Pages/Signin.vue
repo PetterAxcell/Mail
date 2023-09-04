@@ -55,7 +55,9 @@
                     axios.post(this.url, JSON.stringify(this.user), this.configu)
                     .then((response)=>{
                         let id = response.data
-                        let internalPath = "/main/" + id
+                        let internalPath = "/main/" + id;
+                        sessionStorage.setItem("id", id);
+                        console.log(internalPath)
                         router.push({path:internalPath})
                     })
                     .catch((error)=>{
